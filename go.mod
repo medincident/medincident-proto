@@ -1,4 +1,4 @@
-module github.com/medincident/medincident-proto/api/proto
+module github.com/medincident/medincident-proto
 
 go 1.26.1
 

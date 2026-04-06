@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package medincident.events.v1;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+// Envelope wraps all domain events with consistent metadata.
+message Envelope {
+  // Unique event identifier (UUID).
+  string event_id = 1;
+
+  // When the event occurred.
+  google.protobuf.Timestamp occurred_at = 2;
+
+  // Aggregate type (e.g., "user", "incident").
+  string aggregate_type = 3;
+
+  // Aggregate identifier (e.g., user ID).
+  string aggregate_id = 4;
+
+  // Correlation ID for tracing event chains across services.
+  string correlation_id = 5;
+
+  // Event payload. The type URL identifies the concrete event message.
+  google.protobuf.Any payload = 6;
+}

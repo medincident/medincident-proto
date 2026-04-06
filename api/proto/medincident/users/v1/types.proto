@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-package medincident.zitadel.v1;
-
-option go_package = "github.com/medincident/medincident-zitadel-actions/pkg/medincident/zitadel/v1";
+package medincident.users.v1;
 
 // Gender mirrors Zitadel's gender enum.
 enum Gender {
