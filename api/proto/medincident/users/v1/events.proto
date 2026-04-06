@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package medincident.users.v1;
+
+import "medincident/users/v1/types.proto";
+
+message UserCreated {
+  string username = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string display_name = 4;
+  string nick_name = 5;
+  Gender gender = 6;
+  string email = 7;
+  string preferred_language = 8;
+}
+
+// Only changed fields are present.
+message UserNameChanged {
+  optional string first_name = 1;
+  optional string last_name = 2;
+  optional string display_name = 3;
+  optional string nick_name = 4;
+}
+
+message UserGenderChanged {
+  Gender gender = 1;
+}
+
+message UserEmailChanged {
+  string email = 1;
+}
+
+message UserLanguageChanged {
+  string preferred_language = 1;
+}

@@ -5,16 +5,13 @@ tasks:
     desc: Format protobuf definitions
     cmds:
       - go tool buf format -w
-    dir: api/proto
 
   fmt:check:
     desc: Check protobuf formatting (dry-run, no files modified)
     cmds:
       - go tool buf format --diff --exit-code
-    dir: api/proto
 
   lint:
     desc: Lint protobuf definitions
     cmds:
       - go tool buf lint
-    dir: api/proto
