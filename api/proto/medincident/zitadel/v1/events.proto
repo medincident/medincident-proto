@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package medincident.zitadel.v1;
+
+import "medincident/zitadel/v1/types.proto";
+
+option go_package = "github.com/medincident/medincident-zitadel-actions/pkg/medincident/zitadel/v1";
+
+// UserHumanAdded is published when a new human user is created in Zitadel.
+// Maps to Zitadel event: user.human.added
+message UserHumanAdded {
+  string id = 1;
+  string username = 2;
+
+  string first_name = 3;
+  string last_name = 4;
+  string display_name = 5;
+  string nick_name = 6; // empty string if not set
+  Gender gender = 7;
+
+  string email = 8;
+  string preferred_language = 9; // "und" if undefined
+}
+
+// UserHumanProfileChanged is published when a user's profile fields are updated.
+// Maps to Zitadel event: user.human.profile.changed
+// Only fields that were changed are present in the message.
+// An optional field set to empty string means the field was explicitly cleared.
+message UserHumanProfileChanged {
+  string id = 1;
+
+  optional string first_name = 2;
+  optional string last_name = 3;
+  optional string display_name = 4;
+  optional string nick_name = 5; // empty string if cleared
+  optional Gender gender = 6;
+
+  optional string preferred_language = 7; // "und" if undefined
+}
+
+// UserHumanEmailChanged is published when a user changes their email address.
+// Maps to Zitadel event: user.human.email.changed
+message UserHumanEmailChanged {
+  string id = 1;
+  string email = 2;
+}
+
+// UserHumanEmailVerified is published when a user verifies their email address.
+// Maps to Zitadel event: user.human.email.verified
+// Contains only the user ID since no other fields change.
+message UserHumanEmailVerified {
+  string id = 1;
+}
