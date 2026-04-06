@@ -1,0 +1,1 @@
+# medincident-proto
