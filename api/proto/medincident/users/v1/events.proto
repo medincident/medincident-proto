@@ -36,11 +36,3 @@ message UserEmailVerified {}
 message UserLanguageChanged {
   string preferred_language = 1;
 }
-
-message UserAuthenticated {
-  string session_id = 1;
-  string ip_address = 2;
-  string user_agent = 3;
-  string fingerprint_id = 4;
-  string client_id = 5;
-}
