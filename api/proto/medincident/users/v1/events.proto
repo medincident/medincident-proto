@@ -31,6 +31,8 @@ message UserEmailChanged {
   string email = 1;
 }
 
+message UserEmailVerified {}
+
 message UserLanguageChanged {
   string preferred_language = 1;
 }
