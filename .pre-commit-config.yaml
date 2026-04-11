@@ -19,9 +19,17 @@ repos:
         pass_filenames: false
 
       - id: task-lint
-        name: lint (style + breaking)
+        name: lint (style)
         entry: task
         args: [lint]
+        language: system
+        files: '\.proto$'
+        pass_filenames: false
+
+      - id: task-breaking
+        name: breaking-change check
+        entry: task
+        args: [breaking]
         language: system
         files: '\.proto$'
         pass_filenames: false

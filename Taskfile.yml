@@ -12,12 +12,11 @@ tasks:
       - go tool buf format --diff --exit-code
 
   lint:
-    desc: Lint protobuf definitions (style + breaking-change check)
+    desc: Lint protobuf definitions (style only)
     cmds:
       - go tool buf lint
-      - task: lint:breaking
 
-  lint:breaking:
+  breaking:
     desc: Check for wire-incompatible changes vs origin/main
     cmds:
       # Compares current working tree against origin/main. If origin/main is

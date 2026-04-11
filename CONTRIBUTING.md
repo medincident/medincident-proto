@@ -21,12 +21,13 @@ pre-commit install
 Проверь тулчейн:
 
 ```bash
-task lint       # style + breaking-change check
+task lint       # style lint
+task breaking   # breaking-change check vs origin/main
 task fmt:check  # проверка форматирования (dry-run)
 task gen:docs   # перегенерация per-package доков в docs/
 ```
 
-Все три должны завершиться с кодом 0 на чистом чекауте.
+Все четыре должны завершиться с кодом 0 на чистом чекауте.
 
 ## Pre-commit хуки
 
@@ -35,7 +36,8 @@ task gen:docs   # перегенерация per-package доков в docs/
 | Хук | Что делает |
 |---|---|
 | `task-fmt-check` | `task fmt:check` — падает, если какой-то proto не отформатирован. Чинится через `task fmt`. |
-| `task-lint` | `task lint` — buf style lint + `buf breaking` против `origin/main`. |
+| `task-lint` | `task lint` — buf style lint. |
+| `task-breaking` | `task breaking` — `buf breaking` против `origin/main`. Падает, если коммит удаляет или ренамит поле на существующем пакете. |
 | `task-gen-docs` | `task gen:docs` — перегенерирует Markdown-доки под [`docs/`](docs/). Если какой-то файл доки изменился, pre-commit валит коммит, ты пере-стейджишь сгенерированные файлы и коммитишь заново. |
 
 Общие hygiene-хуки (trailing whitespace, EOF newline, YAML validation, large-file guard, merge-conflict markers) запускаются на каждый коммит независимо от типа файла.
@@ -51,8 +53,8 @@ pre-commit run --all-files
 ```bash
 task fmt           # отформатировать все proto in place
 task fmt:check     # проверка формата (dry-run, без модификаций)
-task lint          # buf lint + buf breaking (против origin/main)
-task lint:breaking # только breaking-change check
+task lint          # buf lint (style)
+task breaking      # buf breaking против origin/main
 task gen           # запустить все кодгенераторы (сейчас: gen:docs)
 task gen:docs      # перегенерировать Markdown-доки в docs/
 ```
@@ -71,9 +73,10 @@ task gen:docs      # перегенерировать Markdown-доки в docs/
 
 1. Отредактируй `.proto` файл. Используй следующий свободный номер поля — никогда не переиспользуй старый.
 2. Запусти `task fmt`, чтобы нормализовать форматирование.
-3. Запусти `task lint`, чтобы проверить style и что изменение wire-compatible.
-4. Запусти `task gen:docs`, чтобы обновить Markdown-доки.
-5. Коммить. Pre-commit хуки перепрогонят всё перечисленное выше.
+3. Запусти `task lint`, чтобы проверить style.
+4. Запусти `task breaking`, чтобы убедиться, что изменение wire-compatible.
+5. Запусти `task gen:docs`, чтобы обновить Markdown-доки.
+6. Коммить. Pre-commit хуки перепрогонят всё перечисленное выше.
 
 ### Добавить новый пакет
 
@@ -84,7 +87,7 @@ task gen:docs      # перегенерировать Markdown-доки в docs/
 ### Версионирование
 
 - Breaking changes бампят версию пакета: `v1` → `v2`. Старый пакет остаётся живым до тех пор, пока все консьюмеры не переедут.
-- `task lint` запускает `buf breaking` против `origin/main` и уронит коммит, который удаляет или ренамит поле на существующем пакете. Если breaking change реально нужен — бампай версию пакета в новую директорию, а не правь существующую.
+- `task breaking` запускает `buf breaking` против `origin/main` и уронит коммит, который удаляет или ренамит поле на существующем пакете. Этот же чек висит на pre-commit хуке `task-breaking`. Если breaking change реально нужен — бампай версию пакета в новую директорию, а не правь существующую.
 
 ### Два дерева, две зоны ответственности
 

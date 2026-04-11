@@ -70,7 +70,8 @@ inputs:
 
 ```bash
 task fmt           # отформатировать все proto
-task lint          # buf lint + buf breaking против origin/main
+task lint          # buf lint (style)
+task breaking      # buf breaking против origin/main
 task gen:docs      # перегенерировать Markdown-доки в docs/
 task gen           # зонтичная генерация (сейчас: gen:docs)
 ```
