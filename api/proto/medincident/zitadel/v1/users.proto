@@ -1,8 +1,19 @@
 syntax = "proto3";
 
-package medincident.users.v1;
+package medincident.zitadel.v1;
 
-import "medincident/users/v1/types.proto";
+// User identity events sourced from Zitadel via the medincident-zitadel-actions
+// webhook gateway. This package is a read-only projection of Zitadel's own
+// user lifecycle — the platform does not own the user record itself, only
+// a minimal event trail for downstream consumers (audit log, session
+// stitching, query projections).
+
+enum Gender {
+  GENDER_UNSPECIFIED = 0;
+  GENDER_MALE = 1;
+  GENDER_FEMALE = 2;
+  GENDER_DIVERSE = 3;
+}
 
 message UserCreated {
   string username = 1;
@@ -15,7 +26,8 @@ message UserCreated {
   string preferred_language = 8;
 }
 
-// Only changed fields are present.
+// UserNameChanged carries only the fields that changed. An absent
+// optional means "no change to this field in this event".
 message UserNameChanged {
   optional string first_name = 1;
   optional string last_name = 2;
