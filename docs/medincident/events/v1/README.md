@@ -20,17 +20,19 @@
 <a name="medincident-events-v1-Envelope"></a>
 
 ### Envelope
-Envelope wraps all domain events with consistent metadata.
+Envelope wraps a domain event payload with the metadata every
+consumer needs to route, deduplicate, and correlate it without
+having to unpack the payload first.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | event_id | [string](#string) |  |  |
 | occurred_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| aggregate_type | [string](#string) |  | e.g., &#34;user&#34;, &#34;incident&#34;. |
+| aggregate_type | [string](#string) |  | Aggregate type the event belongs to, e.g. &#34;organization&#34;, &#34;user&#34;. Consumers use this to pick a projection without unpacking payload. |
 | aggregate_id | [string](#string) |  |  |
-| correlation_id | [string](#string) |  | Traces event chains across services. |
-| payload | [google.protobuf.Any](#google-protobuf-Any) |  | Type URL identifies the concrete event message. |
+| correlation_id | [string](#string) |  | Correlation id shared by all events caused by the same inbound request, so event chains can be followed across services. |
+| payload | [google.protobuf.Any](#google-protobuf-Any) |  |  |
 
 
 

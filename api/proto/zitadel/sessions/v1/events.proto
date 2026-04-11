@@ -2,6 +2,11 @@ syntax = "proto3";
 
 package zitadel.sessions.v1;
 
+// Typed payloads for Zitadel session-aggregate events delivered via
+// Actions v2 webhooks. Each message mirrors the corresponding
+// zitadel/zitadel internal/repository/session event struct and is
+// carried inside zitadel.events.v1.Envelope.payload.
+
 import "google/protobuf/timestamp.proto";
 import "zitadel/sessions/v1/types.proto";
 

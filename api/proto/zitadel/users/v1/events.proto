@@ -2,6 +2,11 @@ syntax = "proto3";
 
 package zitadel.users.v1;
 
+// Typed payloads for Zitadel user-aggregate events delivered via
+// Actions v2 webhooks. Each message mirrors the corresponding
+// zitadel/zitadel internal/repository/user event struct and is
+// carried inside zitadel.events.v1.Envelope.payload.
+
 import "google/protobuf/field_mask.proto";
 import "zitadel/users/v1/types.proto";
 
@@ -32,6 +37,7 @@ message UserHumanAdded {
 //   - field in mask + optional + null/unset  -> cleared
 //   - field in mask + optional + set         -> new value
 //   - field in mask + required               -> new (non-null) value
+// See https://protobuf.dev/reference/protobuf/google.protobuf/#fieldmask
 message UserHumanProfileChanged {
   string first_name = 1;
   string last_name = 2;

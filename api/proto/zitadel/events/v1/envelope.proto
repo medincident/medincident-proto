@@ -2,13 +2,21 @@ syntax = "proto3";
 
 package zitadel.events.v1;
 
+// Transport envelope for Zitadel Actions v2 event webhooks, used by
+// the medincident-zitadel-actions gateway to forward Zitadel events
+// onto NATS JetStream with the original payload preserved. This tree
+// is a passthrough mirror of Zitadel's own wire format — it is not a
+// medincident domain API.
+// See https://zitadel.com/docs/concepts/features/actions_v2
+
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
-// Envelope mirrors the Zitadel Actions v2 webhook body 1:1 and wraps
-// the typed event payload. Field names and semantics match Zitadel's
-// internal ContextInfoEvent struct
-// (zitadel/zitadel internal/repository/execution/queue.go).
+// Envelope mirrors the Zitadel Actions v2 event webhook body 1:1 and
+// carries the typed event payload in payload. Field names and
+// semantics match Zitadel's internal ContextInfoEvent struct in
+// zitadel/zitadel internal/repository/execution/queue.go — do not
+// rename or re-type without re-verifying upstream.
 message Envelope {
   string aggregate_id = 1;
   string aggregate_type = 2;

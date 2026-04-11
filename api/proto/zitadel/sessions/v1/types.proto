@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package zitadel.sessions.v1;
 
+// Shared value types for the Zitadel session event passthrough tree.
+// Mirrors zitadel/zitadel internal/domain types 1:1.
+
 // HeaderValues wraps the repeated-value half of a multi-valued HTTP
 // header. Proto3 maps cannot have a repeated value type directly, so
 // we wrap.

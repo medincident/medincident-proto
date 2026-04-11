@@ -40,7 +40,10 @@ independently optional.
 <a name="medincident-shared-geo-v1-Point"></a>
 
 ### Point
-Point is a geographic coordinate (WGS84).
+Point is a geographic coordinate in the WGS84 reference system
+(the same datum used by GPS and GeoJSON). Longitude comes first,
+matching GeoJSON position ordering.
+See https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
 
 
 | Field | Type | Label | Description |

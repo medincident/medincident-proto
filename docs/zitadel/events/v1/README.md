@@ -20,10 +20,11 @@
 <a name="zitadel-events-v1-Envelope"></a>
 
 ### Envelope
-Envelope mirrors the Zitadel Actions v2 webhook body 1:1 and wraps
-the typed event payload. Field names and semantics match Zitadel&#39;s
-internal ContextInfoEvent struct
-(zitadel/zitadel internal/repository/execution/queue.go).
+Envelope mirrors the Zitadel Actions v2 event webhook body 1:1 and
+carries the typed event payload in payload. Field names and
+semantics match Zitadel&#39;s internal ContextInfoEvent struct in
+zitadel/zitadel internal/repository/execution/queue.go — do not
+rename or re-type without re-verifying upstream.
 
 
 | Field | Type | Label | Description |

@@ -119,6 +119,7 @@ carried by updated_fields (FieldMask):
   - field in mask &#43; optional &#43; null/unset  -&gt; cleared
   - field in mask &#43; optional &#43; set         -&gt; new value
   - field in mask &#43; required               -&gt; new (non-null) value
+See https://protobuf.dev/reference/protobuf/google.protobuf/#fieldmask
 
 
 | Field | Type | Label | Description |
