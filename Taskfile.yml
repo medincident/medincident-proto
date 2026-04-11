@@ -12,6 +12,49 @@ tasks:
       - go tool buf format --diff --exit-code
 
   lint:
-    desc: Lint protobuf definitions
+    desc: Lint protobuf definitions (style + breaking-change check)
     cmds:
       - go tool buf lint
+      - task: lint:breaking
+
+  lint:breaking:
+    desc: Check for wire-incompatible changes vs origin/main
+    cmds:
+      # Compares current working tree against origin/main. If origin/main is
+      # unreachable (e.g. detached CI checkout), falls back to local main.
+      - go tool buf breaking --against '.git#branch=origin/main,subdir=api/proto' || go tool buf breaking --against '.git#branch=main,subdir=api/proto'
+
+  gen:
+    desc: Run all code generators (docs, and anything added in the future)
+    cmds:
+      - task: gen:docs
+
+  gen:docs:
+    desc: Generate Markdown documentation per proto package into docs/
+    cmds:
+      # Clean the generated tree so renamed/removed packages don't leave
+      # stale files behind. Only the docs/ directory is regenerated.
+      - rm -rf docs
+      - |
+        set -e
+        for dir in $(find api/proto -type f -name '*.proto' -exec dirname {} \; | sort -u); do
+          rel="${dir#api/proto/}"
+          mkdir -p "docs/$rel"
+          go tool buf generate --template buf.gen.docs.yaml --path "$dir"
+          mv docs/package.md "docs/$rel/README.md"
+        done
+      # protoc-gen-doc emits trailing whitespace on empty template lines
+      # and a run of blank lines at EOF. Both trip pre-commit's whitespace
+      # hooks, so normalise here to keep gen:docs idempotent:
+      #   - strip trailing whitespace from every line
+      #   - collapse any trailing blank lines (file ends in exactly one \n)
+      - |
+        set -e
+        find docs -name '*.md' | while read -r f; do
+          awk '
+            { sub(/[ \t\r]+$/, "") }
+            /^$/ { blank++; next }
+            { for (i = 0; i < blank; i++) print ""; blank = 0; print }
+          ' "$f" > "$f.tmp"
+          mv "$f.tmp" "$f"
+        done

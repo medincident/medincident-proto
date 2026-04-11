@@ -1,0 +1,21 @@
+version: v2
+
+# Generate one Markdown file per proto package into docs/.
+# Downstream consumers and reviewers get human-readable contract
+# documentation without installing buf or protoc.
+#
+# protoc-gen-doc is vendored as a `go tool` dependency (see go.mod),
+# so `go tool buf generate --template buf.gen.docs.yaml` works without
+# any separate binary installation.
+
+inputs:
+  - directory: api/proto
+
+plugins:
+  - local:
+      - go
+      - tool
+      - protoc-gen-doc
+    out: docs
+    opt: markdown,package.md
+    strategy: all
