@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package zitadel.users.v1;
+
+import "google/protobuf/field_mask.proto";
+import "zitadel/users/v1/types.proto";
+
+// UserHumanAdded mirrors zitadel/zitadel
+// internal/repository/user.HumanAddedEvent.
+// Emitted for Zitadel event type "user.human.added".
+//
+// Zitadel's upstream Go struct carries legacy address/phone/password
+// fields (country, locality, postalCode, region, streetAddress, phone,
+// encodedHash, changeRequired). They are deliberately omitted here —
+// the v4+ AddHumanUser API no longer exposes them, they are always
+// empty on the wire, and this platform has no use for them.
+message UserHumanAdded {
+  string user_name = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string display_name = 4;
+  string email = 5;
+  string preferred_language = 6;
+  Gender gender = 7;
+  optional string nick_name = 8;
+}
+
+// UserHumanProfileChanged mirrors HumanProfileChangedEvent. Field
+// optionality matches UserHumanAdded exactly. Change tracking is
+// carried by updated_fields (FieldMask):
+//   - field not in mask                      -> not changed, consumer ignores
+//   - field in mask + optional + null/unset  -> cleared
+//   - field in mask + optional + set         -> new value
+//   - field in mask + required               -> new (non-null) value
+message UserHumanProfileChanged {
+  string first_name = 1;
+  string last_name = 2;
+  string display_name = 3;
+  string preferred_language = 4;
+  Gender gender = 5;
+  optional string nick_name = 6;
+
+  // Tags 7-14 are reserved for future profile fields so updated_fields
+  // keeps a stable tag even as the domain schema grows.
+  reserved 7 to 14;
+
+  google.protobuf.FieldMask updated_fields = 15;
+}
+
+// UserHumanEmailChanged mirrors HumanEmailChangedEvent.
+message UserHumanEmailChanged {
+  string email = 1;
+}
+
+// UserHumanEmailVerified mirrors HumanEmailVerifiedEvent. Marker event
+// — Zitadel sends no event_payload on the wire.
+message UserHumanEmailVerified {}
