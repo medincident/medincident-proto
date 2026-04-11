@@ -33,11 +33,3 @@ repos:
         language: system
         files: '\.proto$'
         pass_filenames: false
-
-      - id: task-gen-docs
-        name: regenerate proto docs
-        entry: task
-        args: [gen:docs]
-        language: system
-        files: '\.proto$'
-        pass_filenames: false

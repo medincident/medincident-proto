@@ -23,3 +23,4 @@ jobs:
           version: 3.x
       - run: task fmt:check
       - run: task lint
+      - run: task gen:check

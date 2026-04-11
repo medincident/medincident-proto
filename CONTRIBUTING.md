@@ -38,7 +38,8 @@ task gen:docs   # перегенерация per-package доков в docs/
 | `task-fmt-check` | `task fmt:check` — падает, если какой-то proto не отформатирован. Чинится через `task fmt`. |
 | `task-lint` | `task lint` — buf style lint. |
 | `task-breaking` | `task breaking` — `buf breaking` против `origin/main`. Падает, если коммит удаляет или ренамит поле на существующем пакете. |
-| `task-gen-docs` | `task gen:docs` — перегенерирует Markdown-доки под [`docs/`](docs/). Если какой-то файл доки изменился, pre-commit валит коммит, ты пере-стейджишь сгенерированные файлы и коммитишь заново. |
+
+Pre-commit **не** регенерирует доки автоматически — это оставлено разработчику, чтобы хуки были быстрыми. Рассинхрон `docs/` и `.proto` ловит CI через `task gen:check`: CI запускает `task gen` и валит билд, если `git diff -- docs/` непустой. Поэтому перед пушем запускай `task gen:docs` руками (или через `task gen`), если правил схемы.
 
 Общие hygiene-хуки (trailing whitespace, EOF newline, YAML validation, large-file guard, merge-conflict markers) запускаются на каждый коммит независимо от типа файла.
 
@@ -57,6 +58,7 @@ task lint          # buf lint (style)
 task breaking      # buf breaking против origin/main
 task gen           # запустить все кодгенераторы (сейчас: gen:docs)
 task gen:docs      # перегенерировать Markdown-доки в docs/
+task gen:check     # проверка, что docs/ в lockstep с .proto (CI использует это)
 ```
 
 `task gen` — зонтичная точка входа для всех кодгенов. Сегодня дёргает только `gen:docs`; любой будущий генератор (validation rules, OpenAPI, client stubs) добавится как новая `gen:*` таска и подцепится под `gen`.
@@ -65,7 +67,15 @@ task gen:docs      # перегенерировать Markdown-доки в docs/
 
 `task gen:docs` использует [`protoc-gen-doc`](https://github.com/pseudomuto/protoc-gen-doc) (вендорнут как `go tool` зависимость, см. `go.mod`) и итерируется по каждой leaf-директории с `.proto` файлами. Для каждой генерится один Markdown-файл `docs/<tree>/<domain>/v1/README.md`. Сгенерированные доки закоммичены в репу — так их видно прямо на GitHub, без установки buf.
 
-Выход пост-процессится через `awk`: срезается trailing whitespace и схлопываются хвостовые пустые строки, чтобы регенерация была идемпотентной под pre-commit. Если хук `task-gen-docs` валит твой коммит — просто пере-стейдж изменённые файлы в `docs/` и коммить повторно.
+Выход пост-процессится через `awk`: срезается trailing whitespace и схлопываются хвостовые пустые строки, чтобы регенерация была идемпотентной.
+
+Рабочий цикл, когда правишь схему:
+
+1. `task gen:docs` — перегенерируй доки локально.
+2. Закоммить изменения `.proto` и `docs/` одним коммитом.
+3. Если забыл шаг 1 — CI поймает через `task gen:check`, который запускает `task gen` и падает, если `git diff -- docs/` непустой.
+
+`task gen:check` — та же проверка, которую крутит CI; можешь прогнать её локально перед push'ем, если хочешь убедиться заранее.
 
 ## Редактирование протоколов
 
@@ -76,7 +86,7 @@ task gen:docs      # перегенерировать Markdown-доки в docs/
 3. Запусти `task lint`, чтобы проверить style.
 4. Запусти `task breaking`, чтобы убедиться, что изменение wire-compatible.
 5. Запусти `task gen:docs`, чтобы обновить Markdown-доки.
-6. Коммить. Pre-commit хуки перепрогонят всё перечисленное выше.
+6. Коммить `.proto` и `docs/` одним коммитом. Pre-commit перепрогонит fmt/lint/breaking; `gen:check` запускается только в CI.
 
 ### Добавить новый пакет
 

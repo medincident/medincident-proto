@@ -28,6 +28,12 @@ tasks:
     cmds:
       - task: gen:docs
 
+  gen:check:
+    desc: Verify generated docs are up to date (fails if `task gen` would produce changes)
+    cmds:
+      - task: gen
+      - git diff --exit-code -- docs/
+
   gen:docs:
     desc: Generate Markdown documentation per proto package into docs/
     cmds:
