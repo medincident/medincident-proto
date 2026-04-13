@@ -3,81 +3,36 @@
 
 ## Table of Contents
 
-- [medincident/orgstructure/v1/events.proto](#medincident_orgstructure_v1_events-proto)
-    - [OrganizationCreated](#medincident-orgstructure-v1-OrganizationCreated)
-    - [OrganizationDescriptionUpdated](#medincident-orgstructure-v1-OrganizationDescriptionUpdated)
-    - [OrganizationLegalAddressRelocated](#medincident-orgstructure-v1-OrganizationLegalAddressRelocated)
-    - [OrganizationRenamed](#medincident-orgstructure-v1-OrganizationRenamed)
+- [medincident/event/v1/envelope.proto](#medincident_event_v1_envelope-proto)
+    - [Envelope](#medincident-event-v1-Envelope)
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="medincident_orgstructure_v1_events-proto"></a>
+<a name="medincident_event_v1_envelope-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## medincident/orgstructure/v1/events.proto
+## medincident/event/v1/envelope.proto
 
 
 
-<a name="medincident-orgstructure-v1-OrganizationCreated"></a>
+<a name="medincident-event-v1-Envelope"></a>
 
-### OrganizationCreated
-OrganizationCreated — an Organization was created with this state.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| description | [string](#string) | optional |  |
-| legal_address | [medincident.shared.geo.v1.Address](#medincident-shared-geo-v1-Address) | optional |  |
-
-
-
-
-
-
-<a name="medincident-orgstructure-v1-OrganizationDescriptionUpdated"></a>
-
-### OrganizationDescriptionUpdated
-OrganizationDescriptionUpdated — the organization&#39;s description became
-this. An unset field (proto3 zero / absent optional) means &#34;cleared&#34;.
+### Envelope
+Envelope is the transport wrapper for every medincident domain event
+published on the bus. The publisher service (a separate drainer) reads
+outbox rows, unmarshals the envelope, and ships it to NATS JetStream.
+Consumers project events by inspecting aggregate_type and unpacking
+payload via its Any type URL.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| description | [string](#string) | optional |  |
-
-
-
-
-
-
-<a name="medincident-orgstructure-v1-OrganizationLegalAddressRelocated"></a>
-
-### OrganizationLegalAddressRelocated
-OrganizationLegalAddressRelocated — the organization&#39;s legal address
-became this. An absent field means &#34;cleared&#34;.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| legal_address | [medincident.shared.geo.v1.Address](#medincident-shared-geo-v1-Address) | optional |  |
-
-
-
-
-
-
-<a name="medincident-orgstructure-v1-OrganizationRenamed"></a>
-
-### OrganizationRenamed
-OrganizationRenamed — the organization&#39;s display name became this.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
+| occurred_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| aggregate_type | [string](#string) |  | Aggregate type the event belongs to: &#34;organization&#34;, &#34;clinic&#34;, &#34;department&#34;. Consumers use this to pick a projection without unpacking payload. |
+| aggregate_id | [string](#string) |  | Aggregate id in text form (UUID string). |
+| payload | [google.protobuf.Any](#google-protobuf-Any) |  |  |
 
 
 

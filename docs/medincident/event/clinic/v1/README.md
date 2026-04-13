@@ -3,53 +3,99 @@
 
 ## Table of Contents
 
-- [medincident/shared/geo/v1/types.proto](#medincident_shared_geo_v1_types-proto)
-    - [Address](#medincident-shared-geo-v1-Address)
-    - [Point](#medincident-shared-geo-v1-Point)
+- [medincident/event/clinic/v1/events.proto](#medincident_event_clinic_v1_events-proto)
+    - [Address](#medincident-event-clinic-v1-Address)
+    - [ClinicCreated](#medincident-event-clinic-v1-ClinicCreated)
+    - [ClinicDetailsChanged](#medincident-event-clinic-v1-ClinicDetailsChanged)
+    - [ClinicPhysicalAddressChanged](#medincident-event-clinic-v1-ClinicPhysicalAddressChanged)
+    - [Point](#medincident-event-clinic-v1-Point)
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="medincident_shared_geo_v1_types-proto"></a>
+<a name="medincident_event_clinic_v1_events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## medincident/shared/geo/v1/types.proto
+## medincident/event/clinic/v1/events.proto
 
 
 
-<a name="medincident-shared-geo-v1-Address"></a>
+<a name="medincident-event-clinic-v1-Address"></a>
 
 ### Address
-Address is a postal address with an optional geographic point. It
-mirrors the internal/shared/geo.Address value object one-to-one:
-text is required when the outer Address is present, and point is
-independently optional.
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | text | [string](#string) |  |  |
-| point | [Point](#medincident-shared-geo-v1-Point) | optional |  |
+| point | [Point](#medincident-event-clinic-v1-Point) | optional |  |
 
 
 
 
 
 
-<a name="medincident-shared-geo-v1-Point"></a>
+<a name="medincident-event-clinic-v1-ClinicCreated"></a>
 
-### Point
-Point is a geographic coordinate in the WGS84 reference system
-(the same datum used by GPS and GeoJSON). Longitude comes first,
-matching GeoJSON position ordering.
-See https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.1
+### ClinicCreated
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| lng | [double](#double) |  |  |
-| lat | [double](#double) |  |  |
+| organization_id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| description | [string](#string) | optional |  |
+| physical_address | [Address](#medincident-event-clinic-v1-Address) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-ClinicDetailsChanged"></a>
+
+### ClinicDetailsChanged
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| description | [string](#string) | optional |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-ClinicPhysicalAddressChanged"></a>
+
+### ClinicPhysicalAddressChanged
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| physical_address | [Address](#medincident-event-clinic-v1-Address) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-Point"></a>
+
+### Point
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| longitude | [double](#double) |  |  |
+| latitude | [double](#double) |  |  |
 
 
 

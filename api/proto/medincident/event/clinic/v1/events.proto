@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package medincident.event.clinic.v1;
+
+// Events for the Clinic aggregate. Self-contained — declares its own
+// Address and Point types. Parent organization id is carried inside
+// ClinicCreated for projection bootstrap; envelope.aggregate_id holds
+// the clinic id itself.
+
+message Point {
+  double longitude = 1;
+  double latitude = 2;
+}
+
+message Address {
+  string text = 1;
+  optional Point point = 2;
+}
+
+message ClinicCreated {
+  string organization_id = 1;
+  string name = 2;
+  optional string description = 3;
+  Address physical_address = 4;
+}
+
+message ClinicDetailsChanged {
+  string name = 1;
+  optional string description = 2;
+}
+
+message ClinicPhysicalAddressChanged {
+  Address physical_address = 1;
+}

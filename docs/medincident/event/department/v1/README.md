@@ -3,36 +3,48 @@
 
 ## Table of Contents
 
-- [medincident/events/v1/envelope.proto](#medincident_events_v1_envelope-proto)
-    - [Envelope](#medincident-events-v1-Envelope)
+- [medincident/event/department/v1/events.proto](#medincident_event_department_v1_events-proto)
+    - [DepartmentCreated](#medincident-event-department-v1-DepartmentCreated)
+    - [DepartmentDetailsChanged](#medincident-event-department-v1-DepartmentDetailsChanged)
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="medincident_events_v1_envelope-proto"></a>
+<a name="medincident_event_department_v1_events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## medincident/events/v1/envelope.proto
+## medincident/event/department/v1/events.proto
 
 
 
-<a name="medincident-events-v1-Envelope"></a>
+<a name="medincident-event-department-v1-DepartmentCreated"></a>
 
-### Envelope
-Envelope wraps a domain event payload with the metadata every
-consumer needs to route, deduplicate, and correlate it without
-having to unpack the payload first.
+### DepartmentCreated
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| event_id | [string](#string) |  |  |
-| occurred_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| aggregate_type | [string](#string) |  | Aggregate type the event belongs to, e.g. &#34;organization&#34;, &#34;user&#34;. Consumers use this to pick a projection without unpacking payload. |
-| aggregate_id | [string](#string) |  |  |
-| correlation_id | [string](#string) |  | Correlation id shared by all events caused by the same inbound request, so event chains can be followed across services. |
-| payload | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+| clinic_id | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| description | [string](#string) | optional |  |
+
+
+
+
+
+
+<a name="medincident-event-department-v1-DepartmentDetailsChanged"></a>
+
+### DepartmentDetailsChanged
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| description | [string](#string) | optional |  |
 
 
 
