@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+package medincident.service.membership.v1;
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/protobuf/timestamp.proto";
+
+// MembershipService is the command-side contract for who-works-where
+// data. Currently covers Employee + Vacation; future revisions will
+// add department heads, clinic heads, and other membership-style
+// entities without renaming the service.
+service MembershipService {
+  // Employee lifecycle
+  rpc HireEmployee(HireEmployeeRequest) returns (HireEmployeeResponse) {
+    option (google.api.http) = {
+      post: "/v1/employees"
+      body: "*"
+    };
+  }
+  rpc UpdateEmployeePosition(UpdateEmployeePositionRequest) returns (UpdateEmployeePositionResponse) {
+    option (google.api.http) = {
+      patch: "/v1/employees/{employee_id}/position"
+      body: "*"
+    };
+  }
+  rpc UpdateEmployeeDepartment(UpdateEmployeeDepartmentRequest) returns (UpdateEmployeeDepartmentResponse) {
+    option (google.api.http) = {
+      patch: "/v1/employees/{employee_id}/department"
+      body: "*"
+    };
+  }
+  rpc TerminateEmployee(TerminateEmployeeRequest) returns (TerminateEmployeeResponse) {
+    option (google.api.http) = {delete: "/v1/employees/{employee_id}"};
+  }
+
+  // Vacation lifecycle
+  rpc StartVacationNow(StartVacationNowRequest) returns (StartVacationNowResponse) {
+    option (google.api.http) = {
+      post: "/v1/employees/{employee_id}/vacations:start-now"
+      body: "*"
+    };
+  }
+  rpc ScheduleVacation(ScheduleVacationRequest) returns (ScheduleVacationResponse) {
+    option (google.api.http) = {
+      post: "/v1/employees/{employee_id}/vacations:schedule"
+      body: "*"
+    };
+  }
+  rpc UpdateVacationEndDate(UpdateVacationEndDateRequest) returns (UpdateVacationEndDateResponse) {
+    option (google.api.http) = {
+      patch: "/v1/vacations/{vacation_id}/end-date"
+      body: "*"
+    };
+  }
+  rpc ForceEndVacation(ForceEndVacationRequest) returns (ForceEndVacationResponse) {
+    option (google.api.http) = {post: "/v1/vacations/{vacation_id}:force-end"};
+  }
+  rpc CancelScheduledVacation(CancelScheduledVacationRequest) returns (CancelScheduledVacationResponse) {
+    option (google.api.http) = {post: "/v1/vacations/{vacation_id}:cancel"};
+  }
+}
+
+// ------ Employee ------
+
+message HireEmployeeRequest {
+  string zitadel_user_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string department_id = 2 [(google.api.field_behavior) = REQUIRED];
+  optional string position = 3;
+}
+message HireEmployeeResponse {
+  string employee_id = 1;
+}
+
+message UpdateEmployeePositionRequest {
+  string employee_id = 1 [(google.api.field_behavior) = REQUIRED];
+  optional string position = 2;
+}
+message UpdateEmployeePositionResponse {}
+
+message UpdateEmployeeDepartmentRequest {
+  string employee_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string department_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+message UpdateEmployeeDepartmentResponse {}
+
+message TerminateEmployeeRequest {
+  string employee_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+message TerminateEmployeeResponse {}
+
+// ------ Vacation ------
+
+message StartVacationNowRequest {
+  string employee_id = 1 [(google.api.field_behavior) = REQUIRED];
+  optional google.protobuf.Timestamp ends_at = 2;
+}
+message StartVacationNowResponse {
+  string vacation_id = 1;
+}
+
+message ScheduleVacationRequest {
+  string employee_id = 1 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp starts_at = 2 [(google.api.field_behavior) = REQUIRED];
+  optional google.protobuf.Timestamp ends_at = 3;
+}
+message ScheduleVacationResponse {
+  string vacation_id = 1;
+}
+
+message UpdateVacationEndDateRequest {
+  string vacation_id = 1 [(google.api.field_behavior) = REQUIRED];
+  google.protobuf.Timestamp ends_at = 2 [(google.api.field_behavior) = REQUIRED];
+}
+message UpdateVacationEndDateResponse {}
+
+message ForceEndVacationRequest {
+  string vacation_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+message ForceEndVacationResponse {}
+
+message CancelScheduledVacationRequest {
+  string vacation_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+message CancelScheduledVacationResponse {}
