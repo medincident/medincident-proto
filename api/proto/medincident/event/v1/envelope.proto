@@ -13,12 +13,17 @@ import "google/protobuf/timestamp.proto";
 message Envelope {
   google.protobuf.Timestamp occurred_at = 1;
 
-  // Aggregate type the event belongs to: "organization", "clinic",
-  // "department". Consumers use this to pick a projection without
-  // unpacking payload.
+  // Aggregate type the event belongs to — a short lowercase token
+  // identifying the aggregate root (e.g. "organization", "clinic",
+  // "department", "employee", "system_admin", "incident_category",
+  // "incident_type"). Consumers use this to pick a projection without
+  // unpacking payload. New aggregates are added as new values; this
+  // field is intentionally an open string rather than an enum so
+  // adding an aggregate does not require a proto revision.
   string aggregate_type = 2;
 
-  // Aggregate id in text form (UUID string).
+  // Aggregate id in text form. For most aggregates this is a UUID
+  // string; for system_admin it is the Zitadel user id (opaque).
   string aggregate_id = 3;
 
   google.protobuf.Any payload = 4;

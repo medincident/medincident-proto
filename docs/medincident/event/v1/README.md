@@ -30,8 +30,8 @@ payload via its Any type URL.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | occurred_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| aggregate_type | [string](#string) |  | Aggregate type the event belongs to: &#34;organization&#34;, &#34;clinic&#34;, &#34;department&#34;. Consumers use this to pick a projection without unpacking payload. |
-| aggregate_id | [string](#string) |  | Aggregate id in text form (UUID string). |
+| aggregate_type | [string](#string) |  | Aggregate type the event belongs to — a short lowercase token identifying the aggregate root (e.g. &#34;organization&#34;, &#34;clinic&#34;, &#34;department&#34;, &#34;employee&#34;, &#34;system_admin&#34;, &#34;incident_category&#34;, &#34;incident_type&#34;). Consumers use this to pick a projection without unpacking payload. New aggregates are added as new values; this field is intentionally an open string rather than an enum so adding an aggregate does not require a proto revision. |
+| aggregate_id | [string](#string) |  | Aggregate id in text form. For most aggregates this is a UUID string; for system_admin it is the Zitadel user id (opaque). |
 | payload | [google.protobuf.Any](#google-protobuf-Any) |  |  |
 
 

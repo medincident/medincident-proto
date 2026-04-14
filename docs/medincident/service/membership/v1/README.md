@@ -913,9 +913,12 @@
 
 ### MembershipService
 MembershipService is the command-side contract for who-works-where
-data. Currently covers Employee &#43; Vacation; future revisions will
-add department heads, clinic heads, and other membership-style
-entities without renaming the service.
+data. It covers the Employee lifecycle (hire / update / terminate),
+Vacation lifecycle (start / schedule / end / cancel / change),
+role grants with deputy management for DepartmentResponsible,
+ClinicHead, OrganizationAdmin, OrganizationHead, and
+OrganizationDispatcher, plus the global SystemAdmin grant that
+operates directly on Zitadel user identifiers.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
