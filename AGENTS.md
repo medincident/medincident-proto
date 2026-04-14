@@ -203,4 +203,4 @@ inputs:
 ## CI
 
 - `.github/` содержит workflow'ы для proto format + lint + breaking checks и Dependabot для Go modules + GitHub Actions.
-- CI-gate `task gen:check` запускает `task gen` (обе подтаски параллельно) и валит билд, если `git status --porcelain -- docs/ gen/ api/openapi/` непустой. Это способ поймать забытую регенерацию любого из трёх артефактов.
+- CI-gate `task gen:check` запускает `task gen` (обе подтаски параллельно), затем валит билд, если `git diff --exit-code -- docs/ gen/ api/openapi/` находит tracked-изменения или `git ls-files --others --exclude-standard -- docs/ gen/ api/openapi/` находит новые untracked-файлы. Это способ поймать забытую регенерацию любого из трёх артефактов.
