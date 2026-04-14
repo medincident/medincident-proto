@@ -36,3 +36,60 @@ message OrganizationDetailsChanged {
 message OrganizationLegalAddressChanged {
   Address legal_address = 1;
 }
+
+// ------ OrganizationAdmin role events ------
+
+message OrganizationAdminAssigned {
+  string employee_id = 1;
+}
+
+message OrganizationAdminRevoked {
+  string employee_id = 1;
+}
+
+message OrganizationAdminDeputyAssigned {
+  string employee_id = 1;
+  string deputy_employee_id = 2;
+}
+
+message OrganizationAdminDeputyRemoved {
+  string employee_id = 1;
+}
+
+// ------ OrganizationHead role events ------
+
+message OrganizationHeadAssigned {
+  string employee_id = 1;
+}
+
+message OrganizationHeadRevoked {
+  string employee_id = 1;
+}
+
+message OrganizationHeadDeputyAssigned {
+  string employee_id = 1;
+  string deputy_employee_id = 2;
+}
+
+message OrganizationHeadDeputyRemoved {
+  string employee_id = 1;
+}
+
+// ------ OrganizationDispatcher role events ------
+
+message OrganizationDispatcherAssigned {
+  string employee_id = 1;
+}
+
+message OrganizationDispatcherRevoked {
+  string employee_id = 1;
+}
+
+message OrganizationDispatcherDeputyAssigned {
+  string employee_id = 1;
+  string deputy_employee_id = 2;
+}
+
+message OrganizationDispatcherDeputyRemoved {
+  string employee_id = 1;
+}
