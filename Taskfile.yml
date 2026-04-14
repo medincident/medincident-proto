@@ -24,15 +24,37 @@ tasks:
       - go tool buf breaking --against '.git#branch=origin/main,subdir=api/proto' || go tool buf breaking --against '.git#branch=main,subdir=api/proto'
 
   gen:
-    desc: Run all code generators (docs, and anything added in the future)
-    cmds:
-      - task: gen:docs
+    desc: Run all code generators (docs, gateway, and anything added in the future)
+    deps:
+      - gen:docs
+      - gen:gateway
 
   gen:check:
-    desc: Verify generated docs are up to date (fails if `task gen` would produce changes)
+    desc: Verify generated artifacts are up to date (fails if `task gen` would produce changes)
     cmds:
       - task: gen
-      - git diff --exit-code -- docs/
+      - |
+        set -e
+        # git diff catches modifications to tracked files; git status -s
+        # also catches new untracked files so a freshly generated package
+        # with a new file doesn't silently slip through.
+        diff_output=$(git status --porcelain -- docs/ gen/ api/openapi/)
+        if [ -n "$diff_output" ]; then
+          echo "generated artifacts out of date:"
+          echo "$diff_output"
+          git diff -- docs/ gen/ api/openapi/
+          exit 1
+        fi
+
+  gen:gateway:
+    desc: Generate grpc/grpc-gateway Go code and merged OpenAPI v2 spec
+    cmds:
+      # Clean outputs so renamed/removed service packages don't leave
+      # stale files behind. Both directories are fully regenerated.
+      - rm -rf gen
+      - mkdir -p api/openapi
+      - rm -f api/openapi/medincident.swagger.json
+      - go tool buf generate --template buf.gen.gateway.yaml
 
   gen:docs:
     desc: Generate Markdown documentation per proto package into docs/
