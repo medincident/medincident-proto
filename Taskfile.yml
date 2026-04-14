@@ -35,25 +35,30 @@ tasks:
       - task: gen
       - |
         set -e
-        # git diff catches modifications to tracked files; git status -s
-        # also catches new untracked files so a freshly generated package
-        # with a new file doesn't silently slip through.
-        diff_output=$(git status --porcelain -- docs/ gen/ api/openapi/)
-        if [ -n "$diff_output" ]; then
-          echo "generated artifacts out of date:"
-          echo "$diff_output"
-          git diff -- docs/ gen/ api/openapi/
+        # Compare working tree against the index rather than HEAD:
+        # git diff (no --cached) catches regen drift without flagging
+        # changes already staged in this commit. Separately list
+        # untracked files under generated paths so a new service leaf
+        # that wasn't yet added to git doesn't silently slip through.
+        if ! git diff --exit-code -- docs/ gen/ api/openapi/; then
+          echo "generated artifacts out of date — run 'task gen' and stage the result"
+          exit 1
+        fi
+        untracked=$(git ls-files --others --exclude-standard -- docs/ gen/ api/openapi/)
+        if [ -n "$untracked" ]; then
+          echo "new generated files not yet tracked by git:"
+          echo "$untracked"
           exit 1
         fi
 
   gen:gateway:
     desc: Generate grpc/grpc-gateway Go code and merged OpenAPI v2 spec
     cmds:
-      # Clean outputs so renamed/removed service packages don't leave
-      # stale files behind. Both directories are fully regenerated.
-      - rm -rf gen
+      # Clean outputs so renamed/removed service packages and any
+      # future extra openapi artifacts don't leave stale files behind.
+      # Both gen/ and api/openapi/ are fully regenerated.
+      - rm -rf gen api/openapi
       - mkdir -p api/openapi
-      - rm -f api/openapi/medincident.swagger.json
       - go tool buf generate --template buf.gen.gateway.yaml
 
   gen:docs:
