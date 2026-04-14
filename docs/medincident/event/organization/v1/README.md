@@ -5,8 +5,20 @@
 
 - [medincident/event/organization/v1/events.proto](#medincident_event_organization_v1_events-proto)
     - [Address](#medincident-event-organization-v1-Address)
+    - [OrganizationAdminAssigned](#medincident-event-organization-v1-OrganizationAdminAssigned)
+    - [OrganizationAdminDeputyAssigned](#medincident-event-organization-v1-OrganizationAdminDeputyAssigned)
+    - [OrganizationAdminDeputyRemoved](#medincident-event-organization-v1-OrganizationAdminDeputyRemoved)
+    - [OrganizationAdminRevoked](#medincident-event-organization-v1-OrganizationAdminRevoked)
     - [OrganizationCreated](#medincident-event-organization-v1-OrganizationCreated)
     - [OrganizationDetailsChanged](#medincident-event-organization-v1-OrganizationDetailsChanged)
+    - [OrganizationDispatcherAssigned](#medincident-event-organization-v1-OrganizationDispatcherAssigned)
+    - [OrganizationDispatcherDeputyAssigned](#medincident-event-organization-v1-OrganizationDispatcherDeputyAssigned)
+    - [OrganizationDispatcherDeputyRemoved](#medincident-event-organization-v1-OrganizationDispatcherDeputyRemoved)
+    - [OrganizationDispatcherRevoked](#medincident-event-organization-v1-OrganizationDispatcherRevoked)
+    - [OrganizationHeadAssigned](#medincident-event-organization-v1-OrganizationHeadAssigned)
+    - [OrganizationHeadDeputyAssigned](#medincident-event-organization-v1-OrganizationHeadDeputyAssigned)
+    - [OrganizationHeadDeputyRemoved](#medincident-event-organization-v1-OrganizationHeadDeputyRemoved)
+    - [OrganizationHeadRevoked](#medincident-event-organization-v1-OrganizationHeadRevoked)
     - [OrganizationLegalAddressChanged](#medincident-event-organization-v1-OrganizationLegalAddressChanged)
     - [Point](#medincident-event-organization-v1-Point)
 
@@ -31,6 +43,67 @@
 | ----- | ---- | ----- | ----------- |
 | text | [string](#string) |  |  |
 | point | [Point](#medincident-event-organization-v1-Point) | optional |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationAdminAssigned"></a>
+
+### OrganizationAdminAssigned
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationAdminDeputyAssigned"></a>
+
+### OrganizationAdminDeputyAssigned
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+| deputy_employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationAdminDeputyRemoved"></a>
+
+### OrganizationAdminDeputyRemoved
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationAdminRevoked"></a>
+
+### OrganizationAdminRevoked
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
 
 
 
@@ -64,6 +137,128 @@ OrganizationDetailsChanged — name and description became these.
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
 | description | [string](#string) | optional |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationDispatcherAssigned"></a>
+
+### OrganizationDispatcherAssigned
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationDispatcherDeputyAssigned"></a>
+
+### OrganizationDispatcherDeputyAssigned
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+| deputy_employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationDispatcherDeputyRemoved"></a>
+
+### OrganizationDispatcherDeputyRemoved
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationDispatcherRevoked"></a>
+
+### OrganizationDispatcherRevoked
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationHeadAssigned"></a>
+
+### OrganizationHeadAssigned
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationHeadDeputyAssigned"></a>
+
+### OrganizationHeadDeputyAssigned
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+| deputy_employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationHeadDeputyRemoved"></a>
+
+### OrganizationHeadDeputyRemoved
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-organization-v1-OrganizationHeadRevoked"></a>
+
+### OrganizationHeadRevoked
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
 
 
 

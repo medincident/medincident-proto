@@ -7,6 +7,10 @@
     - [Address](#medincident-event-clinic-v1-Address)
     - [ClinicCreated](#medincident-event-clinic-v1-ClinicCreated)
     - [ClinicDetailsChanged](#medincident-event-clinic-v1-ClinicDetailsChanged)
+    - [ClinicHeadAssigned](#medincident-event-clinic-v1-ClinicHeadAssigned)
+    - [ClinicHeadDeputyAssigned](#medincident-event-clinic-v1-ClinicHeadDeputyAssigned)
+    - [ClinicHeadDeputyRemoved](#medincident-event-clinic-v1-ClinicHeadDeputyRemoved)
+    - [ClinicHeadRevoked](#medincident-event-clinic-v1-ClinicHeadRevoked)
     - [ClinicPhysicalAddressChanged](#medincident-event-clinic-v1-ClinicPhysicalAddressChanged)
     - [Point](#medincident-event-clinic-v1-Point)
 
@@ -65,6 +69,71 @@
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
 | description | [string](#string) | optional |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-ClinicHeadAssigned"></a>
+
+### ClinicHeadAssigned
+ClinicHeadAssigned — an employee became the head of this clinic.
+Payload carries the holder; aggregate_id in the envelope is
+clinic_id.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-ClinicHeadDeputyAssigned"></a>
+
+### ClinicHeadDeputyAssigned
+ClinicHeadDeputyAssigned — a deputy was attached. The deputy must
+currently work in any department of this clinic.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+| deputy_employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-ClinicHeadDeputyRemoved"></a>
+
+### ClinicHeadDeputyRemoved
+ClinicHeadDeputyRemoved — the deputy slot was cleared.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-clinic-v1-ClinicHeadRevoked"></a>
+
+### ClinicHeadRevoked
+ClinicHeadRevoked — role revoked (explicit or cascade from
+cross-clinic transfer / termination).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| employee_id | [string](#string) |  |  |
 
 
 

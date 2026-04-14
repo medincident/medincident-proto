@@ -3,34 +3,35 @@
 
 ## Table of Contents
 
-- [medincident/event/department/v1/events.proto](#medincident_event_department_v1_events-proto)
-    - [DepartmentCreated](#medincident-event-department-v1-DepartmentCreated)
-    - [DepartmentDetailsChanged](#medincident-event-department-v1-DepartmentDetailsChanged)
-    - [DepartmentResponsibleAssigned](#medincident-event-department-v1-DepartmentResponsibleAssigned)
-    - [DepartmentResponsibleDeputyAssigned](#medincident-event-department-v1-DepartmentResponsibleDeputyAssigned)
-    - [DepartmentResponsibleDeputyRemoved](#medincident-event-department-v1-DepartmentResponsibleDeputyRemoved)
-    - [DepartmentResponsibleRevoked](#medincident-event-department-v1-DepartmentResponsibleRevoked)
+- [medincident/event/incident/category/v1/events.proto](#medincident_event_incident_category_v1_events-proto)
+    - [IncidentCategoryCreated](#medincident-event-incident-category-v1-IncidentCategoryCreated)
+    - [IncidentCategoryDeactivated](#medincident-event-incident-category-v1-IncidentCategoryDeactivated)
+    - [IncidentCategoryDeleted](#medincident-event-incident-category-v1-IncidentCategoryDeleted)
+    - [IncidentCategoryDetailsChanged](#medincident-event-incident-category-v1-IncidentCategoryDetailsChanged)
+    - [IncidentCategoryMoved](#medincident-event-incident-category-v1-IncidentCategoryMoved)
+    - [IncidentCategoryReactivated](#medincident-event-incident-category-v1-IncidentCategoryReactivated)
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="medincident_event_department_v1_events-proto"></a>
+<a name="medincident_event_incident_category_v1_events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## medincident/event/department/v1/events.proto
+## medincident/event/incident/category/v1/events.proto
 
 
 
-<a name="medincident-event-department-v1-DepartmentCreated"></a>
+<a name="medincident-event-incident-category-v1-IncidentCategoryCreated"></a>
 
-### DepartmentCreated
+### IncidentCategoryCreated
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| clinic_id | [string](#string) |  |  |
+| organization_id | [string](#string) |  |  |
+| parent_category_id | [string](#string) | optional | unset = created at root |
 | name | [string](#string) |  |  |
 | description | [string](#string) | optional |  |
 
@@ -39,9 +40,29 @@
 
 
 
-<a name="medincident-event-department-v1-DepartmentDetailsChanged"></a>
+<a name="medincident-event-incident-category-v1-IncidentCategoryDeactivated"></a>
 
-### DepartmentDetailsChanged
+### IncidentCategoryDeactivated
+
+
+
+
+
+
+
+<a name="medincident-event-incident-category-v1-IncidentCategoryDeleted"></a>
+
+### IncidentCategoryDeleted
+
+
+
+
+
+
+
+<a name="medincident-event-incident-category-v1-IncidentCategoryDetailsChanged"></a>
+
+### IncidentCategoryDetailsChanged
 
 
 
@@ -55,68 +76,25 @@
 
 
 
-<a name="medincident-event-department-v1-DepartmentResponsibleAssigned"></a>
+<a name="medincident-event-incident-category-v1-IncidentCategoryMoved"></a>
 
-### DepartmentResponsibleAssigned
-DepartmentResponsibleAssigned — an employee became the &#34;responsible&#34;
-of this department. Payload carries the holder; aggregate_id in the
-envelope is department_id.
+### IncidentCategoryMoved
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
+| new_parent_category_id | [string](#string) | optional | unset = moved to root |
 
 
 
 
 
 
-<a name="medincident-event-department-v1-DepartmentResponsibleDeputyAssigned"></a>
+<a name="medincident-event-incident-category-v1-IncidentCategoryReactivated"></a>
 
-### DepartmentResponsibleDeputyAssigned
-DepartmentResponsibleDeputyAssigned — a deputy was attached to the
-role held by employee_id. The deputy must currently work in the
-same department.
+### IncidentCategoryReactivated
 
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
-| deputy_employee_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="medincident-event-department-v1-DepartmentResponsibleDeputyRemoved"></a>
-
-### DepartmentResponsibleDeputyRemoved
-DepartmentResponsibleDeputyRemoved — the deputy slot was cleared
-(explicit removal, cascade from role revocation, or cascade from
-deputy employee&#39;s termination or department transfer).
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="medincident-event-department-v1-DepartmentResponsibleRevoked"></a>
-
-### DepartmentResponsibleRevoked
-DepartmentResponsibleRevoked — role revoked (either explicitly or
-as a cascade from transfer/termination).
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
 
 
 

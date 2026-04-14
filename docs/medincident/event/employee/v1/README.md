@@ -3,120 +3,161 @@
 
 ## Table of Contents
 
-- [medincident/event/department/v1/events.proto](#medincident_event_department_v1_events-proto)
-    - [DepartmentCreated](#medincident-event-department-v1-DepartmentCreated)
-    - [DepartmentDetailsChanged](#medincident-event-department-v1-DepartmentDetailsChanged)
-    - [DepartmentResponsibleAssigned](#medincident-event-department-v1-DepartmentResponsibleAssigned)
-    - [DepartmentResponsibleDeputyAssigned](#medincident-event-department-v1-DepartmentResponsibleDeputyAssigned)
-    - [DepartmentResponsibleDeputyRemoved](#medincident-event-department-v1-DepartmentResponsibleDeputyRemoved)
-    - [DepartmentResponsibleRevoked](#medincident-event-department-v1-DepartmentResponsibleRevoked)
+- [medincident/event/employee/v1/events.proto](#medincident_event_employee_v1_events-proto)
+    - [EmployeeDepartmentChanged](#medincident-event-employee-v1-EmployeeDepartmentChanged)
+    - [EmployeeHired](#medincident-event-employee-v1-EmployeeHired)
+    - [EmployeePositionChanged](#medincident-event-employee-v1-EmployeePositionChanged)
+    - [EmployeeTerminated](#medincident-event-employee-v1-EmployeeTerminated)
+    - [VacationCancelled](#medincident-event-employee-v1-VacationCancelled)
+    - [VacationEndDateChanged](#medincident-event-employee-v1-VacationEndDateChanged)
+    - [VacationEnded](#medincident-event-employee-v1-VacationEnded)
+    - [VacationScheduled](#medincident-event-employee-v1-VacationScheduled)
+    - [VacationStarted](#medincident-event-employee-v1-VacationStarted)
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="medincident_event_department_v1_events-proto"></a>
+<a name="medincident_event_employee_v1_events-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## medincident/event/department/v1/events.proto
+## medincident/event/employee/v1/events.proto
 
 
 
-<a name="medincident-event-department-v1-DepartmentCreated"></a>
+<a name="medincident-event-employee-v1-EmployeeDepartmentChanged"></a>
 
-### DepartmentCreated
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| clinic_id | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| description | [string](#string) | optional |  |
-
-
-
-
-
-
-<a name="medincident-event-department-v1-DepartmentDetailsChanged"></a>
-
-### DepartmentDetailsChanged
+### EmployeeDepartmentChanged
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| description | [string](#string) | optional |  |
+| department_id | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="medincident-event-department-v1-DepartmentResponsibleAssigned"></a>
+<a name="medincident-event-employee-v1-EmployeeHired"></a>
 
-### DepartmentResponsibleAssigned
-DepartmentResponsibleAssigned — an employee became the &#34;responsible&#34;
-of this department. Payload carries the holder; aggregate_id in the
-envelope is department_id.
+### EmployeeHired
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
+| zitadel_user_id | [string](#string) |  |  |
+| organization_id | [string](#string) |  |  |
+| department_id | [string](#string) |  |  |
+| position | [string](#string) | optional |  |
 
 
 
 
 
 
-<a name="medincident-event-department-v1-DepartmentResponsibleDeputyAssigned"></a>
+<a name="medincident-event-employee-v1-EmployeePositionChanged"></a>
 
-### DepartmentResponsibleDeputyAssigned
-DepartmentResponsibleDeputyAssigned — a deputy was attached to the
-role held by employee_id. The deputy must currently work in the
-same department.
+### EmployeePositionChanged
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
-| deputy_employee_id | [string](#string) |  |  |
+| position | [string](#string) | optional |  |
 
 
 
 
 
 
-<a name="medincident-event-department-v1-DepartmentResponsibleDeputyRemoved"></a>
+<a name="medincident-event-employee-v1-EmployeeTerminated"></a>
 
-### DepartmentResponsibleDeputyRemoved
-DepartmentResponsibleDeputyRemoved — the deputy slot was cleared
-(explicit removal, cascade from role revocation, or cascade from
-deputy employee&#39;s termination or department transfer).
+### EmployeeTerminated
+
+
+
+
+
+
+
+<a name="medincident-event-employee-v1-VacationCancelled"></a>
+
+### VacationCancelled
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
+| vacation_id | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="medincident-event-department-v1-DepartmentResponsibleRevoked"></a>
+<a name="medincident-event-employee-v1-VacationEndDateChanged"></a>
 
-### DepartmentResponsibleRevoked
-DepartmentResponsibleRevoked — role revoked (either explicitly or
-as a cascade from transfer/termination).
+### VacationEndDateChanged
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| employee_id | [string](#string) |  |  |
+| vacation_id | [string](#string) |  |  |
+| ends_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-employee-v1-VacationEnded"></a>
+
+### VacationEnded
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| vacation_id | [string](#string) |  |  |
+| ends_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+
+
+
+
+
+
+<a name="medincident-event-employee-v1-VacationScheduled"></a>
+
+### VacationScheduled
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| vacation_id | [string](#string) |  |  |
+| starts_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| ends_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) | optional |  |
+
+
+
+
+
+
+<a name="medincident-event-employee-v1-VacationStarted"></a>
+
+### VacationStarted
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| vacation_id | [string](#string) |  |  |
+| starts_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| ends_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) | optional |  |
 
 
 
