@@ -16,10 +16,36 @@ version: v2
 # Together these form a self-contained Go package that a future
 # cmd/gateway binary imports to spin up an HTTP → gRPC reverse proxy.
 
+# Managed mode injects `option go_package` per-file at generation time
+# instead of hard-coding it in the .proto sources. Proto files stay
+# repo-agnostic so downstream consumers (command-service, etc.) can
+# point their own buf.gen.yaml at their own module prefix without
+# touching the schema. Prefix + proto path → full Go import path; with
+# paths=source_relative this lines up with the gen/ output tree.
+#
+# The `disable:` entries exempt external modules — googleapis,
+# grpc-gateway, wellknowntypes — so their imports keep pointing at
+# the upstream google.golang.org/genproto and grpc-gateway Go packages
+# that already ship real implementations. Without these exemptions
+# generated code would try to import non-existent
+# `github.com/medincident/medincident-proto/gen/google/api/...`.
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/medincident/medincident-proto/gen
+  disable:
+    - file_option: go_package_prefix
+      module: buf.build/googleapis/googleapis
+    - file_option: go_package_prefix
+      module: buf.build/grpc-ecosystem/grpc-gateway
+    - file_option: go_package_prefix
+      module: buf.build/protocolbuffers/wellknowntypes
+
 inputs:
   - directory: api/proto
     paths:
-      - medincident/service
+      - api/proto/medincident/service
 
 plugins:
   - local:
@@ -51,6 +77,13 @@ plugins:
       - tool
       - protoc-gen-openapiv2
     out: api/openapi
+    # strategy:all feeds every .proto to the plugin in a single
+    # invocation — required for allow_merge to actually produce one
+    # merged swagger. The buf v2 default (strategy:directory) would
+    # invoke the plugin once per package and each invocation would
+    # try to emit its own medincident.swagger.json, clobbering the
+    # previous one.
+    strategy: all
     opt:
       - allow_merge=true
       - merge_file_name=medincident
