@@ -1,0 +1,2513 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "medincident/service/incident/classifier/v1/incident_classifier.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "IncidentClassifierService"
+    },
+    {
+      "name": "MembershipService"
+    },
+    {
+      "name": "OrgStructureService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/clinics/{clinicId}/departments": {
+      "post": {
+        "operationId": "OrgStructureService_CreateDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateDepartmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceCreateDepartmentBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/clinics/{clinicId}/details": {
+      "patch": {
+        "operationId": "OrgStructureService_UpdateClinicDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateClinicDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceUpdateClinicDetailsBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/clinics/{clinicId}/heads": {
+      "post": {
+        "summary": "------ ClinicHead ------",
+        "operationId": "MembershipService_AssignClinicHead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignClinicHeadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignClinicHeadBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/clinics/{clinicId}/heads/{employeeId}": {
+      "delete": {
+        "operationId": "MembershipService_RevokeClinicHead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokeClinicHeadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/clinics/{clinicId}/heads/{employeeId}/deputy": {
+      "delete": {
+        "operationId": "MembershipService_RemoveClinicHeadDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveClinicHeadDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      },
+      "post": {
+        "operationId": "MembershipService_AssignClinicHeadDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignClinicHeadDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignClinicHeadDeputyBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/clinics/{clinicId}/physical-address": {
+      "patch": {
+        "operationId": "OrgStructureService_UpdateClinicPhysicalAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateClinicPhysicalAddressResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceUpdateClinicPhysicalAddressBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/departments/{departmentId}/details": {
+      "patch": {
+        "operationId": "OrgStructureService_UpdateDepartmentDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateDepartmentDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceUpdateDepartmentDetailsBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/departments/{departmentId}/responsibles": {
+      "post": {
+        "summary": "------ DepartmentResponsible ------",
+        "operationId": "MembershipService_AssignDepartmentResponsible",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignDepartmentResponsibleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignDepartmentResponsibleBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/departments/{departmentId}/responsibles/{employeeId}": {
+      "delete": {
+        "operationId": "MembershipService_RevokeDepartmentResponsible",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokeDepartmentResponsibleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/departments/{departmentId}/responsibles/{employeeId}/deputy": {
+      "delete": {
+        "operationId": "MembershipService_RemoveDepartmentResponsibleDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveDepartmentResponsibleDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      },
+      "post": {
+        "operationId": "MembershipService_AssignDepartmentResponsibleDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignDepartmentResponsibleDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignDepartmentResponsibleDeputyBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/employees": {
+      "post": {
+        "summary": "Employee lifecycle",
+        "operationId": "MembershipService_HireEmployee",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HireEmployeeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1HireEmployeeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/employees/{employeeId}": {
+      "delete": {
+        "operationId": "MembershipService_TerminateEmployee",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TerminateEmployeeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/employees/{employeeId}/current-vacation": {
+      "post": {
+        "summary": "Vacation lifecycle",
+        "operationId": "MembershipService_StartVacationNow",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StartVacationNowResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceStartVacationNowBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/employees/{employeeId}/department": {
+      "patch": {
+        "operationId": "MembershipService_UpdateEmployeeDepartment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateEmployeeDepartmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceUpdateEmployeeDepartmentBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/employees/{employeeId}/position": {
+      "patch": {
+        "operationId": "MembershipService_UpdateEmployeePosition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateEmployeePositionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceUpdateEmployeePositionBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/employees/{employeeId}/vacations": {
+      "post": {
+        "operationId": "MembershipService_ScheduleVacation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ScheduleVacationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceScheduleVacationBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/incident-categories/{categoryId}": {
+      "delete": {
+        "operationId": "IncidentClassifierService_DeleteIncidentCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteIncidentCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-categories/{categoryId}/deactivations": {
+      "post": {
+        "operationId": "IncidentClassifierService_DeactivateIncidentCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeactivateIncidentCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-categories/{categoryId}/details": {
+      "patch": {
+        "operationId": "IncidentClassifierService_UpdateIncidentCategoryDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateIncidentCategoryDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentClassifierServiceUpdateIncidentCategoryDetailsBody"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-categories/{categoryId}/parent": {
+      "patch": {
+        "operationId": "IncidentClassifierService_MoveIncidentCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MoveIncidentCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentClassifierServiceMoveIncidentCategoryBody"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-categories/{categoryId}/reactivations": {
+      "post": {
+        "operationId": "IncidentClassifierService_ReactivateIncidentCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ReactivateIncidentCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-categories/{categoryId}/types": {
+      "post": {
+        "summary": "--- Types ---",
+        "operationId": "IncidentClassifierService_CreateIncidentType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateIncidentTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentClassifierServiceCreateIncidentTypeBody"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-types/{typeId}": {
+      "delete": {
+        "operationId": "IncidentClassifierService_DeleteIncidentType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteIncidentTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-types/{typeId}/category": {
+      "patch": {
+        "operationId": "IncidentClassifierService_MoveIncidentType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MoveIncidentTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentClassifierServiceMoveIncidentTypeBody"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-types/{typeId}/deactivations": {
+      "post": {
+        "operationId": "IncidentClassifierService_DeactivateIncidentType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeactivateIncidentTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-types/{typeId}/details": {
+      "patch": {
+        "operationId": "IncidentClassifierService_UpdateIncidentTypeDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateIncidentTypeDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentClassifierServiceUpdateIncidentTypeDetailsBody"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/incident-types/{typeId}/reactivations": {
+      "post": {
+        "operationId": "IncidentClassifierService_ReactivateIncidentType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ReactivateIncidentTypeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/organizations": {
+      "post": {
+        "operationId": "OrgStructureService_CreateOrganization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateOrganizationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateOrganizationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/admins": {
+      "post": {
+        "summary": "------ OrganizationAdmin ------",
+        "operationId": "MembershipService_AssignOrganizationAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignOrganizationAdminResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignOrganizationAdminBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/admins/{employeeId}": {
+      "delete": {
+        "operationId": "MembershipService_RevokeOrganizationAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokeOrganizationAdminResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/admins/{employeeId}/deputy": {
+      "delete": {
+        "operationId": "MembershipService_RemoveOrganizationAdminDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveOrganizationAdminDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      },
+      "post": {
+        "operationId": "MembershipService_AssignOrganizationAdminDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignOrganizationAdminDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignOrganizationAdminDeputyBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/clinics": {
+      "post": {
+        "operationId": "OrgStructureService_CreateClinic",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateClinicResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceCreateClinicBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/details": {
+      "patch": {
+        "operationId": "OrgStructureService_UpdateOrganizationDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateOrganizationDetailsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceUpdateOrganizationDetailsBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/dispatchers": {
+      "post": {
+        "summary": "------ OrganizationDispatcher ------",
+        "operationId": "MembershipService_AssignOrganizationDispatcher",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignOrganizationDispatcherResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignOrganizationDispatcherBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/dispatchers/{employeeId}": {
+      "delete": {
+        "operationId": "MembershipService_RevokeOrganizationDispatcher",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokeOrganizationDispatcherResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/dispatchers/{employeeId}/deputy": {
+      "delete": {
+        "operationId": "MembershipService_RemoveOrganizationDispatcherDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveOrganizationDispatcherDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      },
+      "post": {
+        "operationId": "MembershipService_AssignOrganizationDispatcherDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignOrganizationDispatcherDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignOrganizationDispatcherDeputyBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/heads": {
+      "post": {
+        "summary": "------ OrganizationHead ------",
+        "operationId": "MembershipService_AssignOrganizationHead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignOrganizationHeadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignOrganizationHeadBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/heads/{employeeId}": {
+      "delete": {
+        "operationId": "MembershipService_RevokeOrganizationHead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokeOrganizationHeadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/heads/{employeeId}/deputy": {
+      "delete": {
+        "operationId": "MembershipService_RemoveOrganizationHeadDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveOrganizationHeadDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      },
+      "post": {
+        "operationId": "MembershipService_AssignOrganizationHeadDeputy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssignOrganizationHeadDeputyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceAssignOrganizationHeadDeputyBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/incident-categories": {
+      "post": {
+        "summary": "--- Categories ---",
+        "operationId": "IncidentClassifierService_CreateIncidentCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateIncidentCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentClassifierServiceCreateIncidentCategoryBody"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentClassifierService"
+        ]
+      }
+    },
+    "/v1/organizations/{organizationId}/legal-address": {
+      "patch": {
+        "operationId": "OrgStructureService_UpdateOrganizationLegalAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateOrganizationLegalAddressResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/OrgStructureServiceUpdateOrganizationLegalAddressBody"
+            }
+          }
+        ],
+        "tags": [
+          "OrgStructureService"
+        ]
+      }
+    },
+    "/v1/system-admins": {
+      "post": {
+        "summary": "------ SystemAdmin ------",
+        "operationId": "MembershipService_GrantSystemAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GrantSystemAdminResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GrantSystemAdminRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/system-admins/{zitadelUserId}": {
+      "delete": {
+        "operationId": "MembershipService_RevokeSystemAdmin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RevokeSystemAdminResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "zitadelUserId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/vacations/{vacationId}/cancellations": {
+      "post": {
+        "operationId": "MembershipService_CancelScheduledVacation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CancelScheduledVacationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vacationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/vacations/{vacationId}/end-date": {
+      "patch": {
+        "operationId": "MembershipService_UpdateVacationEndDate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateVacationEndDateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vacationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MembershipServiceUpdateVacationEndDateBody"
+            }
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    },
+    "/v1/vacations/{vacationId}/terminations": {
+      "post": {
+        "operationId": "MembershipService_ForceEndVacation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ForceEndVacationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "vacationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MembershipService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "IncidentClassifierServiceCreateIncidentCategoryBody": {
+      "type": "object",
+      "properties": {
+        "parentCategoryId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "IncidentClassifierServiceCreateIncidentTypeBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "IncidentClassifierServiceMoveIncidentCategoryBody": {
+      "type": "object",
+      "properties": {
+        "newParentCategoryId": {
+          "type": "string"
+        }
+      }
+    },
+    "IncidentClassifierServiceMoveIncidentTypeBody": {
+      "type": "object",
+      "properties": {
+        "newCategoryId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "newCategoryId"
+      ]
+    },
+    "IncidentClassifierServiceUpdateIncidentCategoryDetailsBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "IncidentClassifierServiceUpdateIncidentTypeDetailsBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "MembershipServiceAssignClinicHeadBody": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "employeeId"
+      ]
+    },
+    "MembershipServiceAssignClinicHeadDeputyBody": {
+      "type": "object",
+      "properties": {
+        "deputyEmployeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deputyEmployeeId"
+      ]
+    },
+    "MembershipServiceAssignDepartmentResponsibleBody": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "employeeId"
+      ]
+    },
+    "MembershipServiceAssignDepartmentResponsibleDeputyBody": {
+      "type": "object",
+      "properties": {
+        "deputyEmployeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deputyEmployeeId"
+      ]
+    },
+    "MembershipServiceAssignOrganizationAdminBody": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "employeeId"
+      ]
+    },
+    "MembershipServiceAssignOrganizationAdminDeputyBody": {
+      "type": "object",
+      "properties": {
+        "deputyEmployeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deputyEmployeeId"
+      ]
+    },
+    "MembershipServiceAssignOrganizationDispatcherBody": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "employeeId"
+      ]
+    },
+    "MembershipServiceAssignOrganizationDispatcherDeputyBody": {
+      "type": "object",
+      "properties": {
+        "deputyEmployeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deputyEmployeeId"
+      ]
+    },
+    "MembershipServiceAssignOrganizationHeadBody": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "employeeId"
+      ]
+    },
+    "MembershipServiceAssignOrganizationHeadDeputyBody": {
+      "type": "object",
+      "properties": {
+        "deputyEmployeeId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deputyEmployeeId"
+      ]
+    },
+    "MembershipServiceScheduleVacationBody": {
+      "type": "object",
+      "properties": {
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "startsAt"
+      ]
+    },
+    "MembershipServiceStartVacationNowBody": {
+      "type": "object",
+      "properties": {
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "MembershipServiceUpdateEmployeeDepartmentBody": {
+      "type": "object",
+      "properties": {
+        "departmentId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "departmentId"
+      ]
+    },
+    "MembershipServiceUpdateEmployeePositionBody": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "type": "string"
+        }
+      }
+    },
+    "MembershipServiceUpdateVacationEndDateBody": {
+      "type": "object",
+      "properties": {
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "endsAt"
+      ]
+    },
+    "OrgStructureServiceCreateClinicBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "physicalAddress": {
+          "$ref": "#/definitions/v1AddressInput"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "physicalAddress"
+      ]
+    },
+    "OrgStructureServiceCreateDepartmentBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "OrgStructureServiceUpdateClinicDetailsBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "OrgStructureServiceUpdateClinicPhysicalAddressBody": {
+      "type": "object",
+      "properties": {
+        "physicalAddress": {
+          "$ref": "#/definitions/v1AddressInput"
+        }
+      },
+      "required": [
+        "physicalAddress"
+      ]
+    },
+    "OrgStructureServiceUpdateDepartmentDetailsBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "OrgStructureServiceUpdateOrganizationDetailsBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "OrgStructureServiceUpdateOrganizationLegalAddressBody": {
+      "type": "object",
+      "properties": {
+        "legalAddress": {
+          "$ref": "#/definitions/v1AddressInput"
+        }
+      },
+      "required": [
+        "legalAddress"
+      ]
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1AddressInput": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "point": {
+          "$ref": "#/definitions/v1PointInput"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "v1AssignClinicHeadDeputyResponse": {
+      "type": "object"
+    },
+    "v1AssignClinicHeadResponse": {
+      "type": "object"
+    },
+    "v1AssignDepartmentResponsibleDeputyResponse": {
+      "type": "object"
+    },
+    "v1AssignDepartmentResponsibleResponse": {
+      "type": "object"
+    },
+    "v1AssignOrganizationAdminDeputyResponse": {
+      "type": "object"
+    },
+    "v1AssignOrganizationAdminResponse": {
+      "type": "object"
+    },
+    "v1AssignOrganizationDispatcherDeputyResponse": {
+      "type": "object"
+    },
+    "v1AssignOrganizationDispatcherResponse": {
+      "type": "object"
+    },
+    "v1AssignOrganizationHeadDeputyResponse": {
+      "type": "object"
+    },
+    "v1AssignOrganizationHeadResponse": {
+      "type": "object"
+    },
+    "v1CancelScheduledVacationResponse": {
+      "type": "object"
+    },
+    "v1CreateClinicResponse": {
+      "type": "object",
+      "properties": {
+        "clinicId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateDepartmentResponse": {
+      "type": "object",
+      "properties": {
+        "departmentId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateIncidentCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateIncidentTypeResponse": {
+      "type": "object",
+      "properties": {
+        "typeId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateOrganizationRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalAddress": {
+          "$ref": "#/definitions/v1AddressInput"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "legalAddress"
+      ]
+    },
+    "v1CreateOrganizationResponse": {
+      "type": "object",
+      "properties": {
+        "organizationId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DeactivateIncidentCategoryResponse": {
+      "type": "object"
+    },
+    "v1DeactivateIncidentTypeResponse": {
+      "type": "object"
+    },
+    "v1DeleteIncidentCategoryResponse": {
+      "type": "object"
+    },
+    "v1DeleteIncidentTypeResponse": {
+      "type": "object"
+    },
+    "v1ForceEndVacationResponse": {
+      "type": "object"
+    },
+    "v1GrantSystemAdminRequest": {
+      "type": "object",
+      "properties": {
+        "zitadelUserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "zitadelUserId"
+      ]
+    },
+    "v1GrantSystemAdminResponse": {
+      "type": "object"
+    },
+    "v1HireEmployeeRequest": {
+      "type": "object",
+      "properties": {
+        "zitadelUserId": {
+          "type": "string"
+        },
+        "departmentId": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "zitadelUserId",
+        "departmentId"
+      ]
+    },
+    "v1HireEmployeeResponse": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1MoveIncidentCategoryResponse": {
+      "type": "object"
+    },
+    "v1MoveIncidentTypeResponse": {
+      "type": "object"
+    },
+    "v1PointInput": {
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "v1ReactivateIncidentCategoryResponse": {
+      "type": "object"
+    },
+    "v1ReactivateIncidentTypeResponse": {
+      "type": "object"
+    },
+    "v1RemoveClinicHeadDeputyResponse": {
+      "type": "object"
+    },
+    "v1RemoveDepartmentResponsibleDeputyResponse": {
+      "type": "object"
+    },
+    "v1RemoveOrganizationAdminDeputyResponse": {
+      "type": "object"
+    },
+    "v1RemoveOrganizationDispatcherDeputyResponse": {
+      "type": "object"
+    },
+    "v1RemoveOrganizationHeadDeputyResponse": {
+      "type": "object"
+    },
+    "v1RevokeClinicHeadResponse": {
+      "type": "object"
+    },
+    "v1RevokeDepartmentResponsibleResponse": {
+      "type": "object"
+    },
+    "v1RevokeOrganizationAdminResponse": {
+      "type": "object"
+    },
+    "v1RevokeOrganizationDispatcherResponse": {
+      "type": "object"
+    },
+    "v1RevokeOrganizationHeadResponse": {
+      "type": "object"
+    },
+    "v1RevokeSystemAdminResponse": {
+      "type": "object"
+    },
+    "v1ScheduleVacationResponse": {
+      "type": "object",
+      "properties": {
+        "vacationId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1StartVacationNowResponse": {
+      "type": "object",
+      "properties": {
+        "vacationId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TerminateEmployeeResponse": {
+      "type": "object"
+    },
+    "v1UpdateClinicDetailsResponse": {
+      "type": "object"
+    },
+    "v1UpdateClinicPhysicalAddressResponse": {
+      "type": "object"
+    },
+    "v1UpdateDepartmentDetailsResponse": {
+      "type": "object"
+    },
+    "v1UpdateEmployeeDepartmentResponse": {
+      "type": "object"
+    },
+    "v1UpdateEmployeePositionResponse": {
+      "type": "object"
+    },
+    "v1UpdateIncidentCategoryDetailsResponse": {
+      "type": "object"
+    },
+    "v1UpdateIncidentTypeDetailsResponse": {
+      "type": "object"
+    },
+    "v1UpdateOrganizationDetailsResponse": {
+      "type": "object"
+    },
+    "v1UpdateOrganizationLegalAddressResponse": {
+      "type": "object"
+    },
+    "v1UpdateVacationEndDateResponse": {
+      "type": "object"
+    }
+  }
+}
