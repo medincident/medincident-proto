@@ -32,10 +32,10 @@ service IncidentClassifierService {
     };
   }
   rpc DeactivateIncidentCategory(DeactivateIncidentCategoryRequest) returns (DeactivateIncidentCategoryResponse) {
-    option (google.api.http) = {post: "/v1/incident-categories/{category_id}:deactivate"};
+    option (google.api.http) = {post: "/v1/incident-categories/{category_id}/deactivations"};
   }
   rpc ReactivateIncidentCategory(ReactivateIncidentCategoryRequest) returns (ReactivateIncidentCategoryResponse) {
-    option (google.api.http) = {post: "/v1/incident-categories/{category_id}:reactivate"};
+    option (google.api.http) = {post: "/v1/incident-categories/{category_id}/reactivations"};
   }
   rpc DeleteIncidentCategory(DeleteIncidentCategoryRequest) returns (DeleteIncidentCategoryResponse) {
     option (google.api.http) = {delete: "/v1/incident-categories/{category_id}"};
@@ -61,10 +61,10 @@ service IncidentClassifierService {
     };
   }
   rpc DeactivateIncidentType(DeactivateIncidentTypeRequest) returns (DeactivateIncidentTypeResponse) {
-    option (google.api.http) = {post: "/v1/incident-types/{type_id}:deactivate"};
+    option (google.api.http) = {post: "/v1/incident-types/{type_id}/deactivations"};
   }
   rpc ReactivateIncidentType(ReactivateIncidentTypeRequest) returns (ReactivateIncidentTypeResponse) {
-    option (google.api.http) = {post: "/v1/incident-types/{type_id}:reactivate"};
+    option (google.api.http) = {post: "/v1/incident-types/{type_id}/reactivations"};
   }
   rpc DeleteIncidentType(DeleteIncidentTypeRequest) returns (DeleteIncidentTypeResponse) {
     option (google.api.http) = {delete: "/v1/incident-types/{type_id}"};

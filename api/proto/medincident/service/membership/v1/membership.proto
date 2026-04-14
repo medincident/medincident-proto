@@ -37,13 +37,13 @@ service MembershipService {
   // Vacation lifecycle
   rpc StartVacationNow(StartVacationNowRequest) returns (StartVacationNowResponse) {
     option (google.api.http) = {
-      post: "/v1/employees/{employee_id}/vacations:start-now"
+      post: "/v1/employees/{employee_id}/current-vacation"
       body: "*"
     };
   }
   rpc ScheduleVacation(ScheduleVacationRequest) returns (ScheduleVacationResponse) {
     option (google.api.http) = {
-      post: "/v1/employees/{employee_id}/vacations:schedule"
+      post: "/v1/employees/{employee_id}/vacations"
       body: "*"
     };
   }
@@ -54,10 +54,10 @@ service MembershipService {
     };
   }
   rpc ForceEndVacation(ForceEndVacationRequest) returns (ForceEndVacationResponse) {
-    option (google.api.http) = {post: "/v1/vacations/{vacation_id}:force-end"};
+    option (google.api.http) = {post: "/v1/vacations/{vacation_id}/terminations"};
   }
   rpc CancelScheduledVacation(CancelScheduledVacationRequest) returns (CancelScheduledVacationResponse) {
-    option (google.api.http) = {post: "/v1/vacations/{vacation_id}:cancel"};
+    option (google.api.http) = {post: "/v1/vacations/{vacation_id}/cancellations"};
   }
 
   // ------ DepartmentResponsible ------
