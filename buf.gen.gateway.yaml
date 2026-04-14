@@ -1,0 +1,56 @@
+version: v2
+
+# Gateway codegen template.
+#
+# Scope: api/proto/medincident/service/** only. Domain events
+# (medincident/event/**) and zitadel passthrough (zitadel/**) are NOT
+# compiled here — downstream consumers generate Go code for those
+# subtrees in their own repositories via their own buf.gen.yaml.
+#
+# Outputs:
+#   - gen/medincident/service/**/*.pb.go
+#   - gen/medincident/service/**/*_grpc.pb.go
+#   - gen/medincident/service/**/*.pb.gw.go
+#   - api/openapi/medincident.swagger.json (single merged spec)
+#
+# Together these form a self-contained Go package that a future
+# cmd/gateway binary imports to spin up an HTTP → gRPC reverse proxy.
+
+inputs:
+  - directory: api/proto
+    paths:
+      - medincident/service
+
+plugins:
+  - local:
+      - go
+      - tool
+      - protoc-gen-go
+    out: gen
+    opt:
+      - paths=source_relative
+
+  - local:
+      - go
+      - tool
+      - protoc-gen-go-grpc
+    out: gen
+    opt:
+      - paths=source_relative
+
+  - local:
+      - go
+      - tool
+      - protoc-gen-grpc-gateway
+    out: gen
+    opt:
+      - paths=source_relative
+
+  - local:
+      - go
+      - tool
+      - protoc-gen-openapiv2
+    out: api/openapi
+    opt:
+      - allow_merge=true
+      - merge_file_name=medincident
