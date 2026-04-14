@@ -33,3 +33,11 @@ repos:
         language: system
         files: '\.proto$'
         pass_filenames: false
+
+      - id: task-gen-check
+        name: generated artifacts check
+        entry: task
+        args: [gen:check]
+        language: system
+        files: '\.proto$'
+        pass_filenames: false
